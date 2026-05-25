@@ -70,49 +70,58 @@ export async function getVentasPorCategoria(filters: Filters): Promise<ChartData
 	};
 }
 
+// TODO: endpoint no implementado en backend
 export async function getComprasPorCiudad(filters: Filters): Promise<ChartData> {
 	const params = buildParams(filters, ['category', 'payment_method', 'date_from', 'date_until']);
-	const data = await fetchJson<{ cities: { city: string; total: number }[] }>(`${BASE_URL}/compras-por-ciudad?${params}`);
-	return {
-		labels: data.cities?.map(c => c.city) ?? [],
-		values: data.cities?.map(c => c.total) ?? []
-	};
+	// const data = await fetchJson<{ cities: { city: string; total: number }[] }>(`${BASE_URL}/compras-por-ciudad?${params}`);
+	// return {
+	// 	labels: data.cities?.map(c => c.city) ?? [],
+	// 	values: data.cities?.map(c => c.total) ?? []
+	// };
+	return { labels: [], values: [] };
 }
 
+// TODO: endpoint no implementado en backend
 export async function getComprasPorRangoEtario(filters: Filters): Promise<ChartData> {
 	const params = buildParams(filters, ['city', 'category', 'payment_method', 'date_from', 'date_until']);
-	const data = await fetchJson<{ age_ranges: { range: string; total: number }[] }>(`${BASE_URL}/compras-por-rango-etario?${params}`);
-	return {
-		labels: data.age_ranges?.map(a => a.range) ?? [],
-		values: data.age_ranges?.map(a => a.total) ?? []
-	};
+	// const data = await fetchJson<{ age_ranges: { range: string; total: number }[] }>(`${BASE_URL}/compras-por-rango-etario?${params}`);
+	// return {
+	// 	labels: data.age_ranges?.map(a => a.range) ?? [],
+	// 	values: data.age_ranges?.map(a => a.total) ?? []
+	// };
+	return { labels: [], values: [] };
 }
 
+// TODO: endpoint no implementado en backend
 export async function getVentasPorFecha(filters: Filters): Promise<ChartData> {
 	const params = buildParams(filters, ['city', 'category', 'payment_method', 'date_from', 'date_until']);
-	const data = await fetchJson<{ dates: { date: string; total: number }[] }>(`${BASE_URL}/ventas-por-fecha?${params}`);
+	const data = await fetchJson<{ daily_sales: { date: string; total: number }[] }>(`${BASE_URL}/ventas-por-fecha?${params}`);
 	return {
-		labels: data.dates?.map(d => d.date) ?? [],
-		values: data.dates?.map(d => d.total) ?? []
+		labels: data.daily_sales?.map(d => d.date) ?? [],
+		values: data.daily_sales?.map(d => d.total) ?? []
 	};
 }
 
+// TODO: endpoint no implementado en backend
 export async function getProductosMasVendidos(filters: Filters): Promise<ChartData> {
 	const params = buildParams(filters, ['city', 'category', 'payment_method', 'date_from', 'date_until']);
-	const data = await fetchJson<{ products: { product: string; total: number }[] }>(`${BASE_URL}/productos-mas-vendidos?${params}`);
-	return {
-		labels: data.products?.map(p => p.product) ?? [],
-		values: data.products?.map(p => p.total) ?? []
-	};
+	// const data = await fetchJson<{ products: { product: string; total: number }[] }>(`${BASE_URL}/productos-mas-vendidos?${params}`);
+	// return {
+	// 	labels: data.products?.map(p => p.product) ?? [],
+	// 	values: data.products?.map(p => p.total) ?? []
+	// };
+	return { labels: [], values: [] };
 }
 
-export async function getMetodosPagoMasUsados(filters: Filters): Promise<ChartData> {
+// TODO: endpoint no implementado en backend
+export async function getMetodosPago(filters: Filters): Promise<ChartData> {
 	const params = buildParams(filters, ['city', 'category', 'date_from', 'date_until']);
-	const data = await fetchJson<{ methods: { method: string; total: number }[] }>(`${BASE_URL}/metodos-pago-mas-usados?${params}`);
-	return {
-		labels: data.methods?.map(m => m.method) ?? [],
-		values: data.methods?.map(m => m.total) ?? []
-	};
+	// const data = await fetchJson<{ payment_methods: { payment_method: string; total: number }[] }>(`${BASE_URL}/metodos-pago?${params}`);
+	// return {
+	// 	labels: data.payment_methods?.map(m => m.payment_method) ?? [],
+	// 	values: data.payment_methods?.map(m => m.total) ?? []
+	// };
+	return { labels: [], values: [] };
 }
 
 export interface ImportResult {
