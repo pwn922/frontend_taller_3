@@ -114,3 +114,25 @@ export async function getMetodosPagoMasUsados(filters: Filters): Promise<ChartDa
 		values: data.methods?.map(m => m.total) ?? []
 	};
 }
+
+export interface ImportResult {
+	imported: number;
+	errors: number;
+	total_lines: number;
+}
+
+export async function importCsv(file: File, deleteExisting: boolean): Promise<ImportResult> {
+	const formData = new FormData();
+	formData.set('file', file);
+	formData.set('delete_existing', String(deleteExisting));
+
+	const res = await fetch(`${BASE_URL}/import-csv`, {
+		method: 'POST',
+		body: formData,
+	});
+
+	if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+	const json: ApiEnvelope<ImportResult> = await res.json();
+	if (!json.success) throw new Error(json.message);
+	return json.data;
+}

@@ -5,6 +5,7 @@
 	import ChartBar from '$lib/components/Dashboard/ChartBar.svelte';
 	import ChartPie from '$lib/components/Dashboard/ChartPie.svelte';
 	import ChartLine from '$lib/components/Dashboard/ChartLine.svelte';
+	import ImportCsvButton from '$lib/components/Dashboard/ImportCsvButton.svelte';
 	import * as api from '$lib/api/sales';
 	import type { Filters as FiltersType, ChartData } from '$lib/types/dashboard';
 
@@ -18,6 +19,8 @@
 		date_from: '',
 		date_until: ''
 	});
+
+	let refreshKey = $state(0);
 
 	let totalVentas = $state(0);
 	let promedioGasto = $state(0);
@@ -90,7 +93,16 @@
 		loadData();
 	}
 
+	function handleImportDone() {
+		refreshKey++;
+	}
+
 	onMount(loadData);
+
+	$effect(() => {
+		refreshKey;
+		loadData();
+	});
 </script>
 
 <svelte:head>
@@ -99,7 +111,11 @@
 
 <div class="dashboard">
 	<header class="dashboard-header">
-		<h1>Dashboard de Ventas</h1>
+		<div class="header-left">
+			<div class="header-logo">A</div>
+			<h1>Analítica de Compras</h1>
+		</div>
+		<ImportCsvButton onImportDone={handleImportDone} />
 	</header>
 
 	<Filters {filters} onFilterChange={handleFilterChange} />
@@ -135,10 +151,37 @@
 		margin: 0 auto;
 		padding: 1.5rem;
 	}
+	.dashboard-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid #313244;
+		background: #181825;
+		margin: -1.5rem -1.5rem 1.5rem;
+		padding: 0.75rem 1.5rem;
+	}
+	.header-left {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+	.header-logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 0.5rem;
+		background: #89b4fa;
+		color: #1e1e2e;
+		font-size: 0.875rem;
+		font-weight: 700;
+	}
 	.dashboard-header h1 {
-		font-size: 1.75rem;
+		font-size: 1.125rem;
+		font-weight: 700;
 		color: #cdd6f4;
-		margin: 0 0 1.5rem;
+		margin: 0;
 	}
 	.kpi-grid {
 		display: grid;
