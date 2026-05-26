@@ -15,10 +15,10 @@
 		chart = new Chart(canvas, {
 			type: 'bar',
 			data: {
-				labels,
+				labels: [...labels],
 				datasets: [{
 					label: title || 'Valores',
-					data: values,
+					data: [...values],
 					backgroundColor: '#89b4fa',
 					borderRadius: 4
 				}]

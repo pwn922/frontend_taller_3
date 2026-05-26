@@ -17,9 +17,9 @@
 		chart = new Chart(canvas, {
 			type: 'doughnut',
 			data: {
-				labels,
+				labels: [...labels],
 				datasets: [{
-					data: values,
+					data: [...values],
 					backgroundColor: colors.slice(0, labels.length)
 				}]
 			},

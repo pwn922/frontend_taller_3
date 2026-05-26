@@ -15,10 +15,10 @@
 		chart = new Chart(canvas, {
 			type: 'line',
 			data: {
-				labels,
+				labels: [...labels],
 				datasets: [{
 					label: title || 'Valores',
-					data: values,
+					data: [...values],
 					borderColor: '#89b4fa',
 					backgroundColor: 'rgba(137, 180, 250, 0.1)',
 					fill: true,

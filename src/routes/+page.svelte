@@ -188,10 +188,11 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: 1rem;
 		margin-bottom: 1.5rem;
+		align-items: start;
 	}
 	.charts-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
 	}
 	.loading,
