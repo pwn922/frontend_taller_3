@@ -17,9 +17,18 @@
 
 	onMount(async () => {
 		[cities, categories, paymentMethods] = await Promise.all([
-			api.getCities(),
-			api.getCategories(),
-			api.getPaymentMethods()
+			api.getCities().catch((e) => {
+				console.error('Failed to load cities:', e);
+				return [];
+			}),
+			api.getCategories().catch((e) => {
+				console.error('Failed to load categories:', e);
+				return [];
+			}),
+			api.getPaymentMethods().catch((e) => {
+				console.error('Failed to load payment methods:', e);
+				return [];
+			})
 		]);
 	});
 
