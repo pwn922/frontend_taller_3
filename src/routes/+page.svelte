@@ -61,7 +61,7 @@
 				api.getComprasPorRangoEtario(filters).catch(() => ({ labels: [], values: [] })),
 				api.getVentasPorFecha(filters).catch(() => ({ labels: [], values: [] })),
 				api.getProductosMasVendidos(filters).catch(() => ({ labels: [], values: [] })),
-				api.getMetodosPago(filters).catch(() => ({ labels: [], values: [] }))
+				api.getMetodosPagoMasUsados(filters).catch(() => ({ labels: [], values: [] }))
 			]);
 
 			totalVentas = tv;
