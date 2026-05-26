@@ -9,20 +9,24 @@
 	let canvas: HTMLCanvasElement;
 	let chart: Chart | null = null;
 
+	function cloneData() {
+		return {
+			labels: [...labels],
+			datasets: [{
+				label: title || 'Valores',
+				data: [...values],
+				backgroundColor: '#89b4fa',
+				borderRadius: 4
+			}]
+		};
+	}
+
 	function createChart() {
 		if (chart) chart.destroy();
 		if (!canvas || !labels.length) return;
 		chart = new Chart(canvas, {
 			type: 'bar',
-			data: {
-				labels: [...labels],
-				datasets: [{
-					label: title || 'Valores',
-					data: [...values],
-					backgroundColor: '#89b4fa',
-					borderRadius: 4
-				}]
-			},
+			data: cloneData(),
 			options: {
 				responsive: true,
 				maintainAspectRatio: false,
