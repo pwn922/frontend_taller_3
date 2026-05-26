@@ -126,19 +126,19 @@
 		<div class="error">Error: {error}</div>
 	{:else}
 		<section class="kpi-grid">
-			<KpiCard label="Total Ventas" value={totalVentas?.toLocaleString() ?? 0} icon="💰" />
-			<KpiCard label="Promedio Gasto" value={`$${promedioGasto?.toLocaleString() ?? 0}`} icon="📊" />
-			<KpiCard label="Categoría(s) más vendida(s)" value={categoriaMasVendida} icon="🏷️" items={categoriaMasVendidaItems} />
-			<KpiCard label="Producto(s) más vendido(s)" value={productoMasVendido} icon="⭐" items={productoMasVendidoItems} />
-			<KpiCard label="Ciudad(es) con más compras" value={ciudadMasCompras} icon="📍" items={ciudadMasComprasItems} />
-			<KpiCard label="Método(s) de pago más usado(s)" value={metodoPagoMasUsado} icon="💳" items={metodoPagoMasUsadoItems} />
+			<KpiCard label="Total Ventas" value={totalVentas?.toLocaleString() ?? 0} />
+			<KpiCard label="Promedio Gasto" value={`$${promedioGasto?.toLocaleString() ?? 0}`} />
+			<KpiCard label="Categoría(s) más vendida(s)" value={categoriaMasVendida} items={categoriaMasVendidaItems} />
+			<KpiCard label="Producto(s) más vendido(s)" value={productoMasVendido} items={productoMasVendidoItems} />
+			<KpiCard label="Ciudad(es) con más compras" value={ciudadMasCompras} items={ciudadMasComprasItems} />
+			<KpiCard label="Método(s) de pago más usado(s)" value={metodoPagoMasUsado} items={metodoPagoMasUsadoItems} />
 		</section>
 
 		<section class="charts-grid">
-			<ChartBar title="Ventas por categoría" labels={ventasPorCategoria?.labels ?? []} values={ventasPorCategoria?.values ?? []} />
-			<ChartBar title="Compras por ciudad" labels={comprasPorCiudad?.labels ?? []} values={comprasPorCiudad?.values ?? []} />
+			<ChartBar title="Ventas por categoría" horizontal={true} labels={ventasPorCategoria?.labels ?? []} values={ventasPorCategoria?.values ?? []} />
+			<ChartPie title="Compras por ciudad" labels={comprasPorCiudad?.labels ?? []} values={comprasPorCiudad?.values ?? []} />
 			<ChartBar title="Compras por rango etario" labels={comprasPorRangoEtario?.labels ?? []} values={comprasPorRangoEtario?.values ?? []} />
-			<ChartLine title="Ventas por fecha" labels={ventasPorFecha?.labels ?? []} values={ventasPorFecha?.values ?? []} />
+			<ChartBar title="Ventas por fecha" labels={ventasPorFecha?.labels ?? []} values={ventasPorFecha?.values ?? []} />
 			<ChartBar title="Productos más vendidos" labels={productosMasVendidos?.labels ?? []} values={productosMasVendidos?.values ?? []} />
 			<ChartPie title="Métodos de pago más usados" labels={metodosPagoMasUsados?.labels ?? []} values={metodosPagoMasUsados?.values ?? []} />
 		</section>
