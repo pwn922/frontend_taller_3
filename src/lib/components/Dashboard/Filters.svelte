@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Filters } from '$lib/types/dashboard';
+	import * as api from '$lib/api/sales';
 
 	let {
 		filters,
@@ -8,6 +10,18 @@
 		filters: Filters;
 		onFilterChange: (filters: Filters) => void;
 	} = $props();
+
+	let cities = $state<string[]>([]);
+	let categories = $state<string[]>([]);
+	let paymentMethods = $state<string[]>([]);
+
+	onMount(async () => {
+		[cities, categories, paymentMethods] = await Promise.all([
+			api.getCities(),
+			api.getCategories(),
+			api.getPaymentMethods()
+		]);
+	});
 
 	function update<K extends keyof Filters>(field: K, event: Event) {
 		const target = event.target as HTMLInputElement | HTMLSelectElement;
@@ -20,11 +34,9 @@
 		<label for="filter-city">Ciudad</label>
 		<select id="filter-city" value={filters.city} onchange={(e) => update('city', e)}>
 			<option value="">Todas</option>
-			<option value="Santiago">Santiago</option>
-			<option value="Valparaiso">Valparaíso</option>
-			<option value="Concepcion">Concepción</option>
-			<option value="La Serena">La Serena</option>
-			<option value="Antofagasta">Antofagasta</option>
+			{#each cities as city}
+				<option value={city}>{city}</option>
+			{/each}
 		</select>
 	</div>
 
@@ -32,11 +44,9 @@
 		<label for="filter-category">Categoría</label>
 		<select id="filter-category" value={filters.category} onchange={(e) => update('category', e)}>
 			<option value="">Todas</option>
-			<option value="Electronica">Electrónica</option>
-			<option value="Juguetes">Juguetes</option>
-			<option value="Comida">Comida</option>
-			<option value="Ropa">Ropa</option>
-			<option value="Hogar">Hogar</option>
+			{#each categories as cat}
+				<option value={cat}>{cat}</option>
+			{/each}
 		</select>
 	</div>
 
@@ -44,10 +54,9 @@
 		<label for="filter-payment">Método de pago</label>
 		<select id="filter-payment" value={filters.payment_method} onchange={(e) => update('payment_method', e)}>
 			<option value="">Todos</option>
-			<option value="Tarjeta de credito">Tarjeta de crédito</option>
-			<option value="Tarjeta de debito">Tarjeta de débito</option>
-			<option value="Efectivo">Efectivo</option>
-			<option value="Transferencia">Transferencia</option>
+			{#each paymentMethods as pm}
+				<option value={pm}>{pm}</option>
+			{/each}
 		</select>
 	</div>
 

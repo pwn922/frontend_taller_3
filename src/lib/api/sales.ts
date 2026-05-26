@@ -123,6 +123,21 @@ export async function getMetodosPago(filters: Filters): Promise<ChartData> {
 	return { labels: [], values: [] };
 }
 
+export async function getCategories(): Promise<string[]> {
+	const data = await fetchJson<{ categories: string[] }>(`${BASE_URL}/categorias`);
+	return data.categories ?? [];
+}
+
+export async function getCities(): Promise<string[]> {
+	const data = await fetchJson<{ cities: string[] }>(`${BASE_URL}/ciudades`);
+	return data.cities ?? [];
+}
+
+export async function getPaymentMethods(): Promise<string[]> {
+	const data = await fetchJson<{ payment_methods: string[] }>(`${BASE_URL}/metodos-pago`);
+	return data.payment_methods ?? [];
+}
+
 export interface ImportResult {
 	imported: number;
 	errors: number;
