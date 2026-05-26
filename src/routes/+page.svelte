@@ -135,10 +135,10 @@
 		</section>
 
 		<section class="charts-grid">
-			<ChartBar title="Ventas por categoría" labels={ventasPorCategoria?.labels ?? []} values={ventasPorCategoria?.values ?? []} />
+			<ChartBar title="Ventas por categoría" horizontal={true} labels={ventasPorCategoria?.labels ?? []} values={ventasPorCategoria?.values ?? []} />
 			<ChartPie title="Compras por ciudad" labels={comprasPorCiudad?.labels ?? []} values={comprasPorCiudad?.values ?? []} />
 			<ChartBar title="Compras por rango etario" labels={comprasPorRangoEtario?.labels ?? []} values={comprasPorRangoEtario?.values ?? []} />
-			<ChartLine title="Ventas por fecha" labels={ventasPorFecha?.labels ?? []} values={ventasPorFecha?.values ?? []} />
+			<ChartBar title="Ventas por fecha" labels={ventasPorFecha?.labels ?? []} values={ventasPorFecha?.values ?? []} />
 			<ChartBar title="Productos más vendidos" labels={productosMasVendidos?.labels ?? []} values={productosMasVendidos?.values ?? []} />
 			<ChartPie title="Métodos de pago más usados" labels={metodosPagoMasUsados?.labels ?? []} values={metodosPagoMasUsados?.values ?? []} />
 		</section>
