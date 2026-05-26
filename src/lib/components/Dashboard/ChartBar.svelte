@@ -4,7 +4,7 @@
 
 	Chart.register(...registerables);
 
-	let { labels = [], values = [], title = '' }: { labels: string[]; values: number[]; title?: string } = $props();
+	let { labels = [], values = [], title = '', horizontal = false }: { labels: string[]; values: number[]; title?: string; horizontal?: boolean } = $props();
 
 	let canvas: HTMLCanvasElement;
 	let chart: Chart | null = null;
@@ -30,17 +30,19 @@
 			options: {
 				responsive: true,
 				maintainAspectRatio: false,
+				indexAxis: horizontal ? 'y' : 'x',
 				plugins: {
 					legend: { display: false }
 				},
 				scales: {
 					y: {
 						beginAtZero: true,
-						ticks: { color: '#a6adc8' },
+						ticks: { color: '#a6adc8', precision: 0 },
 						grid: { color: '#313244' }
 					},
 					x: {
-						ticks: { color: '#a6adc8' },
+						beginAtZero: true,
+						ticks: { color: '#a6adc8', precision: 0 },
 						grid: { color: '#313244' }
 					}
 				}
