@@ -1,9 +1,8 @@
 <script lang="ts">
-	let { label, value, icon, items }: { label: string; value: string | number; icon?: string; items?: string[] } = $props();
+	let { label, value, items }: { label: string; value: string | number; items?: string[] } = $props();
 </script>
 
 <div class="kpi-card">
-	<div class="kpi-icon">{icon ?? '📊'}</div>
 	<div class="kpi-body">
 		<span class="kpi-label">{label}</span>
 		{#if items && items.length > 1}
@@ -20,24 +19,16 @@
 
 <style>
 	.kpi-card {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
 		background: #1e1e2e;
 		border: 1px solid #313244;
 		border-radius: 0.75rem;
 		padding: 1rem 1.25rem;
 		min-width: 0;
 	}
-	.kpi-icon {
-		font-size: 1.75rem;
-		flex-shrink: 0;
-	}
 	.kpi-body {
 		display: flex;
 		flex-direction: column;
 		min-width: 0;
-		flex: 1;
 	}
 	.kpi-label {
 		font-size: 0.75rem;

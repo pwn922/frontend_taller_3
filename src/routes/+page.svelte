@@ -126,12 +126,12 @@
 		<div class="error">Error: {error}</div>
 	{:else}
 		<section class="kpi-grid">
-			<KpiCard label="Total Ventas" value={totalVentas?.toLocaleString() ?? 0} icon="💰" />
-			<KpiCard label="Promedio Gasto" value={`$${promedioGasto?.toLocaleString() ?? 0}`} icon="📊" />
-			<KpiCard label="Categoría(s) más vendida(s)" value={categoriaMasVendida} icon="🏷️" items={categoriaMasVendidaItems} />
-			<KpiCard label="Producto(s) más vendido(s)" value={productoMasVendido} icon="⭐" items={productoMasVendidoItems} />
-			<KpiCard label="Ciudad(es) con más compras" value={ciudadMasCompras} icon="📍" items={ciudadMasComprasItems} />
-			<KpiCard label="Método(s) de pago más usado(s)" value={metodoPagoMasUsado} icon="💳" items={metodoPagoMasUsadoItems} />
+			<KpiCard label="Total Ventas" value={totalVentas?.toLocaleString() ?? 0} />
+			<KpiCard label="Promedio Gasto" value={`$${promedioGasto?.toLocaleString() ?? 0}`} />
+			<KpiCard label="Categoría(s) más vendida(s)" value={categoriaMasVendida} items={categoriaMasVendidaItems} />
+			<KpiCard label="Producto(s) más vendido(s)" value={productoMasVendido} items={productoMasVendidoItems} />
+			<KpiCard label="Ciudad(es) con más compras" value={ciudadMasCompras} items={ciudadMasComprasItems} />
+			<KpiCard label="Método(s) de pago más usado(s)" value={metodoPagoMasUsado} items={metodoPagoMasUsadoItems} />
 		</section>
 
 		<section class="charts-grid">
